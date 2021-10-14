@@ -1,0 +1,53 @@
+<script>
+    $(document).ready(function () {
+        // catch the form's submit event
+
+        // LIKE FORM
+        $('#likeForm').submit(function () {
+            message = ""
+            // create an AJAX call
+            $.ajax({
+                data: $(this).serialize(), // get the form data
+                type: $(this).attr('method'), // GET or POST
+                url: "{% url 'like' %}",
+                // on success
+                // success: function (response) {
+                //     message += "<div class='alert alert-success alert-dismissible fade show' role='alert'><strong>Profile Updated successfully!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'>    <span aria-hidden='true'>&times;</span></button></div>";
+                //     $("#msg").html(message);
+                //     //alert("Your profile updated successfully " + response.name);
+                // },
+                // on error
+                error: function (response) {
+                    // alert the error if any error occured
+                    alert(response.responseJSON.errors);
+                    console.log(response.responseJSON.errors)
+                }
+            });
+            return false;
+        });
+
+        // UNLIKE FORM
+        $('#unlikeForm').submit(function () {
+            message = ""
+            // create an AJAX call
+            $.ajax({
+                data: $(this).serialize(), // get the form data
+                type: $(this).attr('method'), // GET or POST
+                url: "{% url 'unlike' %}",
+                // on success
+                // success: function (response) {
+                //     message += "<div class='alert alert-success alert-dismissible fade show' role='alert'><strong>Profile Updated successfully!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'>    <span aria-hidden='true'>&times;</span></button></div>";
+                //     $("#msg").html(message);
+                //     //alert("Your profile updated successfully " + response.name);
+                // },
+                // on error
+                error: function (response) {
+                    // alert the error if any error occured
+                    alert(response.responseJSON.errors);
+                    console.log(response.responseJSON.errors)
+                }
+            });
+            return false;
+        });
+    })
+</script>
